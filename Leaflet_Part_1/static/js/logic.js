@@ -63,10 +63,7 @@ d3.json(url).then(function(response) {
         onEachFeature: function(feature, layer) {
             layer.bindPopup("Magnitude: " + feature.properties.mag + "<br>Depth: " + feature.geometry.coordinates[2] + "<br>Location: " + feature.properties.place);
         }
-}).addTo(myMap);
-
-
-
+}).addTo(myMap)
 
 // Create a legend control element
 let legend = L.control({ position: "bottomright" });
@@ -74,7 +71,8 @@ let legend = L.control({ position: "bottomright" });
 // add legend to the map
 legend.onAdd = function() {
     let div = L.DomUtil.create("div", "info legend"),
-        depths = [-10, 10, 30, 50, 70, 90];
+        depths = [-10, 10, 30, 50, 70, 90],
+        labels = [];
 
 
     // create a legend title
@@ -83,23 +81,17 @@ legend.onAdd = function() {
 
     // loop through depths and generate labels with colored squares
     for (let i = 0; i < depths.length; i++) {
-        div.innerHTML +=
-            '<i style="background:' + getColor(depths[i] + 1) + '"></i> ' + depths[i] + (depths[i + 1] ? '&ndash;' + depths[i + 1] + '<br>' : '+');   
-    }
-    div.style.backgroundColor = '#fff';
-    div.style.border = '2px solid #ccc';
-    div.style.borderRadius = '5px';
-    div.style.padding = '10px';
-    div.style.boxShadow = '3px 3px 3px #999';
-    div.style.fontSize = '12px';
-    div.style.lineHeight = '18px';
-    div.style.color = "#002366";
+        
+        labels.push(
+            '<span class="legend-square" style="background-color: ' + getColor(depths[i]) + '"></span> ' + depths[i] + (depths[i + 1] ? "&ndash;" + depths[i + 1] + "<br>" : "+"));
+    }     
+            div.innerHTML += '<ul>' + labels.join('') + '</ul>';
+    
+    div.classList.add("legend-style");
     return div;
 };
 
 // add legend to the map object
 legend.addTo(myMap);
  
-
-
 });
