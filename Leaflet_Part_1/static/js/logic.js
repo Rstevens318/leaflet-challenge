@@ -29,17 +29,17 @@ d3.json(url).then(function(response) {
     function getColor(depth) {
         switch (true) {
             case depth > 90:
-              return "Red"; // Red
+              return "Red"; 
             case depth > 70:
-              return "pink"; // Orange
+              return "pink";
             case depth > 50:
-              return "orange"; // Amber
+              return "orange";
             case depth > 30:
-              return "yellow"; // Yellow
+              return "yellow";
             case depth > 10:
-              return "green"; // Lime
+              return "green";
             default:
-              return "lightgreen"; // Green
+              return "lightgreen";
         }
     }
 
