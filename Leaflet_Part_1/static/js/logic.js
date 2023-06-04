@@ -27,23 +27,19 @@ d3.json(url).then(function(response) {
  
     }
     function getColor(depth) {
-        if (depth > 90) {
-            return "#ff0000";
-        }
-        else if (depth > 70) {
-            return "#ff6600";
-        }
-        else if (depth > 50) {
-            return "#ff9900";
-        }
-        else if (depth > 30) {
-            return "#ffcc00";
-        }
-        else if (depth > 10) {
-            return "#ffff00";
-        }
-        else {
-            return "#ccff00";
+        switch (true) {
+            case depth > 90:
+              return "Red"; // Red
+            case depth > 70:
+              return "pink"; // Orange
+            case depth > 50:
+              return "orange"; // Amber
+            case depth > 30:
+              return "yellow"; // Yellow
+            case depth > 10:
+              return "green"; // Lime
+            default:
+              return "lightgreen"; // Green
         }
     }
 
@@ -83,7 +79,7 @@ legend.onAdd = function() {
     for (let i = 0; i < depths.length; i++) {
         
         labels.push(
-            '<span class="legend-square" style="background-color: ' + getColor(depths[i]) + '"></span> ' + depths[i] + (depths[i + 1] ? "&ndash;" + depths[i + 1] + "<br>" : "+"));
+            '<span class="legend-square" style="background-color: ' + getColor(depths[i] + 1) + '"></span> ' + depths[i] + (depths[i + 1] ? "&ndash;" + depths[i + 1] + "<br>" : "+"));
     }     
             div.innerHTML += '<ul>' + labels.join('') + '</ul>';
     
