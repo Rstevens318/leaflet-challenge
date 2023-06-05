@@ -67,33 +67,24 @@
       // Add a tile layer (the background map image) from MapBox
       let grayscale = L.tileLayer('https://api.mapbox.com/styles/v1/{style}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnN0ZXZlbnMzMTgiLCJhIjoiY2xpaTJqM2ZpMHZ3eTNmbXE4YjFtdjVqZyJ9.hT8YYeWHPYyqgqlwsUUZMA', {
         attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-        maxZoom: 18,
-        tileSize: 512,
-        zoomOffset: -1,
-        style: 'mapbox/light-v11',
+        style: 'mapbox/light-v11'
       });
 
-      let outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/{style}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnN0ZXZlbnMzMTgiLCJhIjoiY2xpaTJqM2ZpMHZ3eTNmbXE4YjFtdjVqZyJ9.hT8YYeWHPYyqgqlwsUUZMA', {
+      let outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/{style}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnN0ZXZlbnMzMTgiLCJhIjoiY2xpaTRwOGNhMXJlZTNrbXFzMXkwbHBlZiJ9.4EZdnQG6VnsosxhJBFb7Eg', {
         attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-        maxZoom: 18,
-        tileSize: 512,
-        zoomOffset: -1,
-        style: 'mapbox/outdoors-v12',
+        style: 'mapbox/outdoors-v12'
       });
 
-      let satellite = L.tileLayer('https://api.mapbox.com/styles/v1/{style}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnN0ZXZlbnMzMTgiLCJhIjoiY2xpaTJqM2ZpMHZ3eTNmbXE4YjFtdjVqZyJ9.hT8YYeWHPYyqgqlwsUUZMA', {
+      let satellite = L.tileLayer('https://api.mapbox.com/styles/v1/{style}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoicnN0ZXZlbnMzMTgiLCJhIjoiY2xpaTRwZ285MXJ4ZTNnbzUwejZnY2t6aSJ9.nyK3TryCfOUOBjWyGYfH-g', {
         attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
-        maxZoom: 18,
-        tileSize: 512,
-        zoomOffset: -1,
-        style: 'mapbox/satellite-v9',
+        style: 'mapbox/satellite-v9'
       });
   // New Layer Group for Tectonic plate data
   faultLines = new L.LayerGroup();
 
   // Get Tectonic Plate GeoJson data
   d3.json(platesUrl).then(function(plates) {
-    console.log(plates);
+    // console.log(plates);
     L.geoJSON(plates, {
       color: "orange",
       weight: 2
@@ -115,7 +106,7 @@
       let myMap = L.map("map", {
         center: [37.09, -95.71],
         zoom: 4,
-        layers: [mapping, grayscale, plates]
+        layers: [mapping, grayscale, faultLines]
       });
 
   
